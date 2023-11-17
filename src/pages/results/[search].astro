@@ -1,0 +1,44 @@
+---
+//Parametro dinamico
+import Layout from "../../layouts/Layout.astro";
+import Search from "../../components/Search.jsx";
+
+const {search} = Astro.params; //Definimos a search cómo un parámetro
+
+const response = await fetch(
+    "https://api.themoviedb.org/3/search/movie?" +
+    "&api_key=96013caf1d939bf914b20e12375de35c" +
+    "&language=en-US" +
+    "&query=" + search +
+    "&page=1" +
+    "&include_adult=false"  
+);
+
+const data = await response.json();
+
+const poster_url = "https://image.tmdb.org/t/p/w500"
+
+const details = "/details/"
+---
+
+<Layout>
+    <Search client:load />
+    <div class="row">
+        {
+            data.results.map( (item) => (
+                <div class="col-lg-3">
+                    <div class="card mt-4" style="width: 18rem;">
+                        <a href={details + item.id}><img src={poster_url + item.poster_path} 
+                            alt="poster" 
+                            class="card-img-top" /> 
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{item.title}</h5>
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</Layout>
+

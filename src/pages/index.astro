@@ -1,9 +1,11 @@
 ---
 import Movies from '../components/Movies.astro';
 import Layout from '../layouts/Layout.astro';
+import Search from '../components/Search.jsx';
 ---
 
 <Layout>
+	<Search client:load /> <!--Carga la funcionalidad -->
 	<Movies />
 </Layout>
 
