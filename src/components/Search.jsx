@@ -24,10 +24,10 @@ export default function Search() {
     return (
         <div>
             <center>
-                <h1 class="mt-5">Search Movies</h1>
+                <h1 className="mt-5">Search Movies</h1>
                 <form action= {url + value} method="POST">
                     <input type="search"
-                    class="form-control p-3" value={value} onChange={buscar} placeholder="Search" >
+                    className="form-control p-3" value={value} onChange={buscar} placeholder="Search" >
 
                     </input>
                 </form>
